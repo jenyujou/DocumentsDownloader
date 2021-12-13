@@ -17,7 +17,10 @@ def main():
         dlu.check_validity()
         # url = "https://www.michigan.gov/sos/"
         # url = "https://www.michigan.gov/sos/0,4670,7-127-1631_50300_50310-30109--,00.html"
-        links = dlu.get_all_links('^/'+url.split('/')[-2]+'/')
+        pattern = url.split('/')[-1]
+        if pattern == '':
+            pattern = url.split('/')[-2]
+        links = dlu.get_all_links('^/' + pattern + '/')
         for link in links:
             if doctype.lower() == 'pdf':
                 PdfDownloader.download_pdfs(url+link)

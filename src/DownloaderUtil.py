@@ -16,7 +16,7 @@ class DownloaderUtil:
             print("Invalid URL")
             sys.exit()
 
-    def get_all_links(self, attr) :
+    def get_all_links(self, attr):
         page = requests.get(self.url)
         soup = BeautifulSoup(page.content, "html.parser")
         links = []
