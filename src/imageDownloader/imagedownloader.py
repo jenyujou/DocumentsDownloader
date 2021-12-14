@@ -4,24 +4,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class DocDownloader:
+class ImageDownloader:
     def __init__(self):
         pass
 
-    def download_docs(url):
+    def download_images(url):
         # If there is no such folder, the script will create one automatically
-        folder_location = os.getcwd()+r'webscraping'
+        folder_location = os.getcwd() + r'webscraping'
         if not os.path.exists(folder_location): os.mkdir(folder_location)
 
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-        for link in soup.select("a[href$='.doc']"):
-            # Name the pdf files using the last portion of each link which are unique in this case
-            filename = os.path.join(folder_location, link['href'].split('/')[-1])
-            with open(filename, 'wb') as f:
-                f.write(requests.get(urljoin(url, link['href'])).content)
-
-        for link in soup.select("a[href$='.docx']"):
+        for link in soup.select(
+                "a[href*='.jpg'], a[href*='.jpeg'], a[href*='.png'], a[href*='.gif'], a[href*='.tiff']"):
             # Name the pdf files using the last portion of each link which are unique in this case
             filename = os.path.join(folder_location, link['href'].split('/')[-1])
             with open(filename, 'wb') as f:
