@@ -50,7 +50,12 @@ def main():
                 im.ImageDownloader.download_images(url + link)
     else:
         print(
-            "You enter incorrect input info. Please look at following example...\r\npython3 documentsdownloader.py --doctype pdf --url https://www.michigan.gov/sos/")
+            "You enter incorrect input info. Please look at following example...\r\npython3 documentsdownloader.py "
+            "--doctype pdf --url https://www.michigan.gov/sos/\r\nOptions for doctype parameters:\r\n"
+            "- pdf\r\n"
+            "- doc (doc, docx)\r\n"
+            "- excel (xls, xlsx, xlsm, xlsb, xla, xlt, csv, xml)\r\n"
+            "- image (jpg, jpeg, png, gif, tiff)")
 
 
 if __name__ == "__main__":

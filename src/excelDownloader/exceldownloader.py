@@ -11,7 +11,8 @@ class ExcelDownloader:
     def download_excels(url):
         # If there is no such folder, the script will create one automatically
         folder_location = os.getcwd()+r'webscraping'
-        if not os.path.exists(folder_location): os.mkdir(folder_location)
+        if not os.path.exists(folder_location):
+            os.mkdir(folder_location)
 
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
