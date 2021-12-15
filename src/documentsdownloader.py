@@ -2,10 +2,10 @@ import re
 import sys
 import requests
 from bs4 import BeautifulSoup
-from docDownloader import docdownloader as ddl
-from excelDownloader import exceldownloader as ex
-from imageDownloader import imagedownloader as im
-from pdfDownloader import pdfdownloader as pf
+from docDownloader import docdownloader
+from excelDownloader import exceldownloader
+from imageDownloader import imagedownloader
+from pdfDownloader import pdfdownloader
 
 
 class DocumentsDownloader:
@@ -41,13 +41,17 @@ def main():
         links = dd.get_all_links('^/' + pattern + '/')
         for link in links:
             if 'pdf' in doctype.lower():
-                pf.PdfDownloader.download_pdfs(url + link)
+                pf = pdfdownloader.PdfDownloader(url + link)
+                pf.download_pdfs()
             elif 'doc' in doctype.lower():
-                ddl.DocDownloader.download_docs(url + link)
+                ddl = docdownloader.DocDownloader(url + link)
+                ddl.download_docs()
             elif 'excel' in doctype.lower():
-                ex.ExcelDownloader.download_excels(url + link)
+                ex = exceldownloader.ExcelDownloader(url + link)
+                ex.download_excels()
             elif 'image' in doctype.lower():
-                im.ImageDownloader.download_images(url + link)
+                im = imagedownloader.ImageDownloader(url + link)
+                im.download_images()
     else:
         print(
             "You enter incorrect input info. Please look at following example...\r\npython3 documentsdownloader.py "
