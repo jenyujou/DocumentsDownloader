@@ -1,0 +1,3 @@
+*.pyc
+/srcwebscraping
+/src/__output*
